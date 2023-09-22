@@ -36,10 +36,30 @@ public class SudokuSolver {
         }
 
         // create the list of sets for each row (this.rows)
-        // ...
+        for (int i = 0; i < 9; i++)
+        {
+            Set<Integer> rowSet = new HashSet<>();
+            
+            for (int j = 0; j < 9; j++)
+            {
+                rowSet.add(this.grid[i][j]);
+            }
+            
+            rows.add(rowSet);
+        }
 
         // create the list of sets for each col (this.cols)
-        // ...
+        for (int i = 0; i < 9; i++)
+        {
+            Set<Integer> colSet = new HashSet<>();
+            
+            for (int j = 0; j < 9; j++)
+            {
+                colSet.add(Integer.valueOf(this.grid[j][i]));
+            }
+            
+            cols.add(colSet);
+        }
 
         // create the list of sets for each square (this.squares)
         /* the squares are added to the list row-by-row:
@@ -47,10 +67,29 @@ public class SudokuSolver {
             3 4 5
             6 7 8
          */
-        // ...
+        for (int i = 0; i < 3; i++)
+        {
+            for (int j = 0; j < 3; j++)
+            {
+                Set<Integer> squareSet = new HashSet<>();
+
+                for (int k = 0; k < 3; k++)
+                {
+                    for (int l = 0; l < 3; l++)
+                    {
+                        squareSet.add(Integer.valueOf(this.grid[k*i][l*j]));
+                    }
+                }
+
+                this.squares.add(squareSet);
+            }
+        }
 
         // create a hash set for [1..9] (this.nums)
-        // ...
+        for (int i = 1; i <= 9; i++)
+        {
+            this.nums.add(i);
+        }
 
         // visually inspect that all the sets are correct
         for (int row = 0; row < N; row++) {
@@ -144,12 +183,14 @@ public class SudokuSolver {
         String fileName = "src/puzzle1.txt";
 
         SudokuSolver solver = new SudokuSolver(fileName);
-        System.out.println(solver);
+        // System.out.println(solver);
+        /*
         if (solver.solve()) {
             System.out.println("Solved!");
             System.out.println(solver);
         } else {
             System.out.println("Unsolveable...");
         }
+        */
     }
 }
