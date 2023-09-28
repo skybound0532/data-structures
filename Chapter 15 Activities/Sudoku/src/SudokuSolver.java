@@ -73,7 +73,7 @@ public class SudokuSolver {
          */
         this.squares = new ArrayList<>();
         
-         for (int i = 0; i < M; i++)
+        for (int i = 0; i < M; i++)
         {
             for (int j = 0; j < M; j++)
             {
@@ -83,7 +83,7 @@ public class SudokuSolver {
                 {
                     for (int l = 0; l < M; l++)
                     {
-                        squareSet.add(Integer.valueOf(this.grid[k + (i * 3)][l + (j * 3)]));
+                        squareSet.add(Integer.valueOf(this.grid[k + (i * M)][l + (j * M)]));
                     }
                 }
 
@@ -149,22 +149,22 @@ public class SudokuSolver {
         
         int squareIndex = -1;
 
-        if(nextRow < 3)
+        if(nextRow < M)
         {
-            if(nextCol < 3) squareIndex = 0;
-            else if (nextCol < 6) squareIndex = 1;
+            if(nextCol < M) squareIndex = 0;
+            else if (nextCol < M*2) squareIndex = 1;
             else squareIndex = 2;
         }
-        else if(nextRow < 6)
+        else if(nextRow < M*2)
         {
-            if(nextCol < 3) squareIndex = 3;
-            else if (nextCol < 6) squareIndex = 4;
+            if(nextCol < M) squareIndex = 3;
+            else if (nextCol < M*2) squareIndex = 4;
             else squareIndex = 5;
         }
         else
         {
-            if(nextCol < 3) squareIndex = 6;
-            else if (nextCol < 6) squareIndex = 7;
+            if(nextCol < M) squareIndex = 6;
+            else if (nextCol < M*2) squareIndex = 7;
             else squareIndex = 8;
         }
 
