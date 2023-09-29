@@ -12,13 +12,13 @@ public class FirstLetterMap
 {
     public static void main(String[] args)
     {
-        String filename = "src/test1.txt";
+        String filename = "Chapter 15 Activities/FirstLetterMap/src/test1.txt";
 
         try (Scanner in = new Scanner(new File(filename)))
         {
 
             // Create your map here
-            ...
+            Map<Character,Set> words = new TreeMap<>();
 
             while (in.hasNext())
             {
@@ -27,13 +27,20 @@ public class FirstLetterMap
 
                 // Update the map here
                 // Use the Java 8 merge method
-                . . .
+                Set<String> wordsPlus = new TreeSet<>();
+                words.merge(c, wordsPlus, (val1, val2) -> val1.add(val2));
 
             }
 
             // Print the map here in this form
             // a: [a, able, aardvark]
-            . . .
+            Set<Character> keys = words.keySet();
+
+            for(Character key : keys)
+            {
+
+            }
+
         } catch (FileNotFoundException e)
         {
             System.out.println("Cannot open: " + filename);
