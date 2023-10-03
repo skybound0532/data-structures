@@ -27,6 +27,7 @@ public class FirstLetterMap
 
                 // Update the map here
                 // Use the Java 8 merge method
+                /*
                 Set<String> wordsPlus = new TreeSet<>();
                 wordsPlus.add(word);
                 
@@ -36,6 +37,16 @@ public class FirstLetterMap
                 }
                 
                 words.merge(c, wordsPlus, (old, newVal) -> old);
+                */
+
+                words.merge(c,
+                new TreeSet<>(Arrays.asList(word)),
+                (oldValue, newValue) -> 
+                    {
+                        oldValue.add(newValue);
+                        return oldValue;
+                    }
+                );
 
             }
 
