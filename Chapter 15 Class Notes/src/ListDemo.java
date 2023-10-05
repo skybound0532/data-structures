@@ -15,7 +15,7 @@ public class ListDemo
         staff.addLast("Natasha");
         staff.addLast("Peter");
         staff.addLast("Gamora");
-
+    
         /* The listIterator method creates a new list iterator that is positioned at the head of the list */
         ListIterator<String> iterator = staff.listIterator(); // |TNPG
 
