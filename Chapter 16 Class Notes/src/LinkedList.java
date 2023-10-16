@@ -8,12 +8,17 @@ import java.util.NoSuchElementException;
 */
 public class LinkedList
 {
-
+    // The first variable refers to the first Node in the list
+    // If the list is empty, first refers to null
+    private Node first;
 
     /**
         Constructs an empty linked list.
     */
-
+    public LinkedList()
+    {
+        this.first = null;
+    }
 
 
 
@@ -21,7 +26,15 @@ public class LinkedList
         Returns the first element in the linked list.
         @return the first element in the linked list
     */
+    public Object getFirst()
+    {
+        if(this.first==null)
+        {
+            throw new NoSuchElementException();
+        }
 
+        return this.first.data;
+    }
 
 
 
@@ -29,7 +42,18 @@ public class LinkedList
         Removes the first element in the linked list.
         @return the removed element
     */
+    public Object removeFirst()
+    {
+        if(this.first==null)
+        {
+            throw new NoSuchElementException();
+        }
 
+        Object element = this.first.data;
+        this.first=this.first.next;
+
+        return element;
+    }
 
 
 
@@ -38,7 +62,13 @@ public class LinkedList
         Adds an element to the front of the linked list.
         @param element the element to add
     */
-
+    public void addFirst(Object element)
+    {
+        Node newNode = new Node();
+        newNode.data = element;
+        newNode.next = this.first;
+        this.first = newNode;
+    }
 
 
 
@@ -47,23 +77,38 @@ public class LinkedList
         Returns an iterator for iterating through this list.
         @return an iterator for iterating through this list
     */
+    
 
 
 
 
 
     //Class Node
-
+    // Node is static because it doesn't have to access anything in Linked List
+    // Inner class because it is only used by Linked List
+    static class Node
+    {
+        public Object data;
+        public Node next;
+    }
 
     class LinkedListIterator //implements ListIterator
     {
       //private data
-
+        private Node position;
+        private Node previous;
+        private boolean isAfterNext;
 
         /**
             Constructs an iterator that points to the front
             of the linked list.
         */
+        public LinkedListIterator()
+        {
+            this.position = null;
+            this.previous = null;
+            this.isAfterNext = false;
+        }
 
 
         /**
