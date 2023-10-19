@@ -1,4 +1,5 @@
 import java.util.NoSuchElementException;
+import java.util.ListIterator;
 
 /**
     A linked list is a sequence of nodes with efficient
@@ -41,7 +42,20 @@ public class LinkedList
     */
     public boolean contains(Object obj)
     {
-        // ...
+        boolean contained = false;
+
+        Node unit = first;
+
+        while(unit!=null)
+        {
+            if(unit.data.equals(obj))
+            {
+                contained = true;
+            }
+            unit = unit.next;
+        }
+        
+        return contained;
     }
 
     /**
