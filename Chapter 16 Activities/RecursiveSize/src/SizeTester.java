@@ -14,7 +14,7 @@ public class SizeTester
         ListIterator iterator = names.listIterator();
         iterator.next();
         iterator.next();
-        iterator.remove();
+        iterator.remove(); 
         iterator.next();
         iterator.remove();
         iterator.add("Juliet");
