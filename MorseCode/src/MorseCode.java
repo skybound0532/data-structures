@@ -71,9 +71,8 @@ public class MorseCode
      */
     private static void addSymbol(char letter, String code)
     {
-        /*
-            !!! INSERT CODE HERE
-        */
+        codeMap.put(letter,code);
+        treeInsert(letter, code);
     }
 
     /**
@@ -85,9 +84,28 @@ public class MorseCode
      */
     private static void treeInsert(char letter, String code)
     {
-        /*
-            !!! INSERT CODE HERE
-        */
+        treeInsert(letter, code, decodeTree);
+    }
+
+    private static void treeInsert(char letter, String code, TreeNode root)
+    {
+        if (code.length() == 0)
+        {
+            root.setValue(letter);
+        }
+        else
+        {
+            if (code.charAt(0) == '.')
+            {
+                if (root.getLeft() == null) root.setLeft(new TreeNode(' '));
+                treeInsert(letter, code.substring(1), root.getLeft());
+            }
+            else
+            {
+                if (root.getRight() == null) root.setRight(new TreeNode(' '));
+                treeInsert(letter, code.substring(1), root.getRight());
+            }
+        }
     }
 
     /**
@@ -100,9 +118,10 @@ public class MorseCode
     {
         StringBuffer morse = new StringBuffer(400);
 
-        /*
-            !!! INSERT CODE HERE
-        */
+        for (int i = 0; i < text.length(); i++)
+        {
+            morse.append(codeMap.get(text.charAt(i)) + " ");
+        }
 
         return morse.toString();
     }
@@ -117,11 +136,37 @@ public class MorseCode
     {
         StringBuffer text = new StringBuffer(100);
 
-        /*
-            !!! INSERT CODE HERE
-        */
+        while (morse.length() > 0)
+        {
+            text.append(decodeLetter(morse.substring(0, morse.indexOf(" "))));
+            morse = morse.substring(morse.indexOf(" "));
+        }
 
         return text.toString();
+    }
+
+    private static char decodeLetter(String morse)
+    {
+        return decodeLetter(morse, decodeTree);
+    }
+    
+    private static char decodeLetter(String morse, TreeNode root)
+    {
+        if (morse.length() == 0)
+        {
+            return (char) root.getValue();
+        }
+        else
+        {
+            if (morse.charAt(0) == '.')
+            {
+                return decodeLetter(morse.substring(1), root.getLeft());
+            }
+            else
+            {
+                return decodeLetter(morse.substring(1), root.getRight());
+            }
+        }
     }
 }
 
