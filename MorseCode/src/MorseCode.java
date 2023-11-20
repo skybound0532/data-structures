@@ -95,7 +95,7 @@ public class MorseCode
         }
         else
         {
-            if (code.charAt(0) == '.')
+            if (code.charAt(0) == DOT)
             {
                 if (root.getLeft() == null) root.setLeft(new TreeNode(' '));
                 treeInsert(letter, code.substring(1), root.getLeft());
@@ -120,7 +120,14 @@ public class MorseCode
 
         for (int i = 0; i < text.length(); i++)
         {
-            morse.append(codeMap.get(text.charAt(i)) + " ");
+            if (text.charAt(i) == ' ')
+            {
+                morse.append(" ");
+            }
+            else
+            {
+                morse.append(codeMap.get(Character.toUpperCase(text.charAt(i))) + " ");
+            }
         }
 
         return morse.toString();
@@ -139,7 +146,7 @@ public class MorseCode
         while (morse.length() > 0)
         {
             text.append(decodeLetter(morse.substring(0, morse.indexOf(" "))));
-            morse = morse.substring(morse.indexOf(" "));
+            morse = morse.substring(morse.indexOf(" ") + 1);
         }
 
         return text.toString();
@@ -156,9 +163,13 @@ public class MorseCode
         {
             return (char) root.getValue();
         }
+        else if (morse.charAt(0) == ' ')
+        {
+            return ' '; 
+        }
         else
         {
-            if (morse.charAt(0) == '.')
+            if (morse.charAt(0) == DOT)
             {
                 return decodeLetter(morse.substring(1), root.getLeft());
             }
