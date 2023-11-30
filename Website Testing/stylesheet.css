@@ -9,16 +9,21 @@ h1 {
     font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
-a:link {
-    color: skyblue;
+button {
+    align-self: center;
 }
 
-a:visited {
-    color: red;
+a:link, a:visited {
+    background-color: lightblue;
+    color: black;
+    padding: 14px 25px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
 }
 
 a:hover {
-    color: blue;
+    background-color: mediumturquoise;
 }
 
 p {
